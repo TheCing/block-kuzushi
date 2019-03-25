@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    Camera camera;
+    Camera mainCam;
     SpriteRenderer spriteRenderer;
     Vector3 spriteSize;
     float spriteBoundLeft, spriteBoundRight;
@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		camera = Camera.main;
-        halfHeight = camera.orthographicSize;
-        halfWidth = camera.aspect * halfHeight;
+		mainCam = Camera.main;
+        halfHeight = mainCam.orthographicSize;
+        halfWidth = mainCam.aspect * halfHeight;
 
         hMin = -halfWidth;
         hMax =  halfWidth;

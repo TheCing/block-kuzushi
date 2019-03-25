@@ -13,4 +13,16 @@ public class BrickController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void Break() {
+        // play shatter anim
+        // give charge meter
+        // add to score
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Break();
+    }
 }

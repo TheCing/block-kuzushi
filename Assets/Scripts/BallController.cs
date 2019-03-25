@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
-
-    Camera camera;
-    Rigidbody2D rigidbody2D;
+    
+    Camera mainCam;
+    Rigidbody2D rigidBod;
     SpriteRenderer spriteRenderer;
     Vector3 spriteSize;
     float spriteBoundLeft, spriteBoundRight;
 
+    public bool testLaunch;
     public Vector2 launch;
 
     float halfHeight, halfWidth, hMin, hMax, vMin, vMax;
 
 	// Use this for initialization
 	void Start () {
-        camera = Camera.main;
-        halfHeight = camera.orthographicSize;
-        halfWidth = camera.aspect * halfHeight;
+        mainCam = Camera.main;
+        halfHeight = mainCam.orthographicSize;
+        halfWidth = mainCam.aspect * halfHeight;
 
         hMin = -halfWidth;
         hMax = halfWidth;
@@ -30,7 +31,7 @@ public class BallController : MonoBehaviour {
         spriteBoundLeft = hMin + spriteSize.x / 2;
         spriteBoundRight = hMax - spriteSize.x / 2;
 
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidBod = GetComponent<Rigidbody2D>();
         SpawnBall();
 	}
 	
@@ -40,6 +41,12 @@ public class BallController : MonoBehaviour {
 	}
 
     void SpawnBall() {
-        rigidbody2D.AddForce(launch, ForceMode2D.Impulse);
+        if (testLaunch)
+        {
+            rigidBod.AddForce(launch, ForceMode2D.Impulse);
+        }
+        else {
+            rigidBod.AddForce(new Vector2(Random.Range(-2, 2), 4), ForceMode2D.Impulse);
+        }
     }
 }
